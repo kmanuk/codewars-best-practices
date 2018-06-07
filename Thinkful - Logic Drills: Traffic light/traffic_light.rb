@@ -9,12 +9,12 @@
 #  For example, update_light('green') should return 'yellow'.
 #
 
-# best => 6 clever => 11
+# Best Practices => 6 Clever => 11
 def update_light(current)
   {"green" => "yellow", "yellow" => "red", "red" => "green"}[current]
 end
 
-# best => 2
+# Best Practices => 2
 def update_light(current)
   if current == 'green'
     'yellow'

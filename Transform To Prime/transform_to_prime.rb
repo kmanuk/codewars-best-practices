@@ -1,5 +1,5 @@
 #  http://www.codewars.com/kata/transform-to-prime/ruby
-#  Task :
+#  Task:
 #  Given a List [] of n integers , find minimum mumber to be inserted in a list, so that sum of all elements of list should equal the closest prime number .
 #
 #  Notes
@@ -22,14 +22,14 @@
 #    Explanation:
 #    Since , the sum of the list's elements equal to (189) , the minimum number to be inserted to transform the sum to prime number is (2) , which will make the sum of the List equal the closest prime number (191) .
 
-# best => 6
+# Best Practices => 6
 require 'prime'
 
 def minimum_number(numbers)
   Prime.find { |prime| prime >= numbers.sum } - numbers.sum
 end
 
-# best => 2 clever => 1
+# Best Practices => 2 Clever => 1
 require 'prime'
 
 def minimum_number(numbers)
