@@ -27,48 +27,23 @@
 #
 #  NOTE: There will also be lists tested of lengths upwards of 10,000,000 elements. Be sure your code doesn't time out.
 
+# Best Practices => 41 Clever => 26
 def sum_pairs(ints, s)
-  a = []
-  i = 0
-
-  while i < ints.size - 1 do
-    if ints[i+1, ints.size].index(s-ints[i])
-      t = ints[i+1, ints.size]
-
-      if a.any? && a.last < t.index(s-ints[i])+i+1
-        break
-      end
-
-      a.clear
-      a << [i, t.index(s-ints[i])+1+i]
-      a.flatten!
-    end
-    i += 1
+  seen = {}
+  for i in ints do
+    return [s-i, i] if seen[s-i]
+    seen[i] = true
   end
-
-  [ints[a[0]], ints[a[1]]] if a.any?
+  nil
 end
 
+# Best Practices => 17 Clever => 12
+require 'set'
 def sum_pairs(ints, s)
-  a = []
-  k = ints.size
-
-  for i in 0...ints.size-1 do
-    for j in (i+1)...k do
-      if ints[i] + ints[j] == s
-        if a.any? && a[1] < j
-          break
-        end
-        a.clear
-        a << i << j
-        k = j
-      end
-    end
-  end
-
-  [ints[a[0]], ints[a[1]]] if a.any?
+  seen = Set.new
+  ints.each { |v|
+    return [s - v, v] if seen.include?(s - v)
+    seen << v
+  }
+  nil
 end
-
-ints=Array.new(100000) { rand(1...10900000) }
-s = 100292
-sum_pairs(ints, s)
